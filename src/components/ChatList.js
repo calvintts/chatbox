@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 class ChatList extends Component{
     componentDidMount() {
         this.props.fetchMessages()
+        setInterval(() => this.props.fetchMessages(),5000)
     }
 
     renderList(){

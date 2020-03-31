@@ -4,7 +4,6 @@ import {Field,reduxForm} from 'redux-form'
 import {fetchMessages} from '../actions'
 import {connect} from "react-redux";
 
-
 class ChatInput extends Component {
     onSubmit = ({name,content}) => {
         const now = new Date()
