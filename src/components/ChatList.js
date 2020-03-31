@@ -1,28 +1,17 @@
 import React, {Component} from 'react'
 import Message from './Message'
-import axios from '../api/axios-data'
+import {fetchMessages} from '../actions'
+import {connect} from 'react-redux'
 
 class ChatList extends Component{
-    state = {
-        data:null,
-    }
-
     componentDidMount() {
-        axios.get('/message.json')
-            .then(res => {
-                const data = Object.entries(res.data).map(([key,val]) =>{
-                   return val
-                })
-                console.log(res)
-                this.setState({data})
-            })
-            .catch(err => console.warn('Unable to load messages!'))
+        this.props.fetchMessages()
     }
 
     renderList(){
-        if(this.state.data)
+        if(this.props.data)
         {
-            return this.state.data.map((d,index) => {
+            return this.props.data.map((d,index) => {
                 return <Message key={index} name={d.name} content={d.content} time={d.time} />
             })
         }
@@ -41,4 +30,10 @@ class ChatList extends Component{
     }
 }
 
-export default ChatList
+const mapStateToProps = (state) => {
+    return ({
+        data: state.messages
+    })
+}
+
+export default connect(mapStateToProps,{fetchMessages})(ChatList)

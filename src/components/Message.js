@@ -5,9 +5,9 @@ import StephImg from '../data/img/steph.jfif'
 const Message = (props) => {
     return (
         <div className="comment">
-            <a className="avatar" alt="avatar">
-                <img src={props.name=='calvin'?CalvinImg:StephImg}/>
-            </a>
+            <div className="avatar" alt="avatar">
+                <img src={props.name==='calvin'?CalvinImg:StephImg} alt="profile img"/>
+            </div>
             <div className="content">
                 <span style={{textTransform:'capitalize'}}className="author">{props.name}</span>
                 <div className="metadata">
